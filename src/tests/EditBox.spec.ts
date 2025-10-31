@@ -16,19 +16,4 @@ describe('Running module/EditBox tests...', () => {
 
     wrapper.unmount()
   })
-
-  test('TinyMCE loads properly', async () => {
-    const wrapper = mount(EditBox, {
-      // global: {
-      //   mocks: {
-      //     // mock for vue-i18n
-      //     $t: (msg: any) => msg
-      //   }
-      // }
-    })
-    const tinyMCE = wrapper.find('.tox-tinymce')
-    expect(tinyMCE).toBeTruthy()
-
-    wrapper.unmount()
-  })
 })

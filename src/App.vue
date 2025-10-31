@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/js/dist/tab'
+import 'material-symbols//outlined.css'
 
 import SettingsTab from '@/components/views/SettingsTab.vue'
 import EditorTab from '@/components/views/EditorTab.vue'
@@ -20,6 +21,7 @@ onMounted(() => {
 </script>
 
 <template>
+<div class="app-container">
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
       <button
@@ -33,6 +35,7 @@ onMounted(() => {
         aria-selected="true"
       >
         <!-- {{ $t('App.settings') }} -->
+        <span class="material-symbols-outlined fs-6">settings</span>
         Settings
       </button>
       <button
@@ -46,6 +49,7 @@ onMounted(() => {
         aria-selected="false"
       >
         <!-- {{ $t('App.editor') }} -->
+        <span class="material-symbols-outlined fs-6">contract_edit</span>
         Editor
       </button>
       <button
@@ -59,6 +63,7 @@ onMounted(() => {
         aria-selected="false"
       >
         <!-- {{ $t('App.performance') }} -->
+        <span class="material-symbols-outlined fs-6">developer_mode_tv</span>
         Performance
       </button>
     </div>
@@ -74,11 +79,26 @@ onMounted(() => {
       <performance-tab ref="performanceTab"></performance-tab>
     </div>
   </div>
+</div>
 </template>
 
 <style lang="scss">
-body {
-  background-color: #222;
+
+.app-container {
+  // CSS variable overrides
+  --bs-body-bg: #222;
+  --bs-body-color: #eee;
+  --p-editor-content-background: #111;
+  --p-editor-content-color: #eee;
+  --p-datatable-row-background: #222;
+  --p-datatable-row-hover-background: #333;
+  --p-datatable-row-color: #aaa;
+  --p-datatable-row-hover-color: #aac;
+}
+
+// Material Symbols
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
 }
 
 // Tabs

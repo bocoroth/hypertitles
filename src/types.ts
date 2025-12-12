@@ -25,7 +25,7 @@ export interface LineList {
 
 export interface LineListState {
   currentLine: string
-  currentLineNum: number,
+  currentLineNum: number
   data: LineList
   isEditorMode: boolean
   lineData: ScriptLine[]

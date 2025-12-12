@@ -6,8 +6,8 @@ import { Util } from '@/utils/Util'
 
 vi.mock('@/utils/Util', () => ({
   Util: {
-    debugLog: vi.fn(),
-  },
+    debugLog: vi.fn()
+  }
 }))
 
 describe('EditBox.vue', () => {

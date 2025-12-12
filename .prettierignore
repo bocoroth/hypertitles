@@ -1,0 +1,27 @@
+# Ignore dependencies and build output
+node_modules
+dist
+build
+target
+src-tauri/target
+src-tauri/dist
+
+# Coverage and reports
+coverage
+coverage/**
+.lcov.info
+coverage-final.json
+.tmp
+
+# Editor / OS files
+.vscode
+.idea
+.DS_Store
+
+# Generated/minified files
+*.min.js
+*.min.css
+*.log
+
+# Lockfiles
+package-lock.json

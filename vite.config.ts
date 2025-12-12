@@ -8,8 +8,8 @@ export default defineConfig({
   plugins: [
     vue(),
     VueI18nPlugin({
-      include: path.resolve(__dirname, './src/locales/**'), // PUT YOUR OWN PATH TO LOCALES HERE
-    }),
+      include: path.resolve(__dirname, './src/locales/**') // PUT YOUR OWN PATH TO LOCALES HERE
+    })
   ],
   resolve: {
     alias: {

@@ -9,7 +9,7 @@ import { onMounted, ref } from 'vue'
 
 import { Util } from '@/utils/Util'
 
-const lineItem = ref<string>('')  
+const lineItem = ref<string>('')
 
 onMounted(() => {
   Util.debugLog('EditBox module mounted.')
@@ -18,9 +18,8 @@ onMounted(() => {
 
 <template>
   <div id="editbox" style="margin-top: 7px">
-    <Editor v-model="lineItem" editorStyle="height: 150px;"/>
+    <Editor v-model="lineItem" editorStyle="height: 150px;" />
   </div>
 </template>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

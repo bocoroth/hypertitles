@@ -42,17 +42,16 @@ onMounted(() => {
       selectionMode="single"
       dataKey="lineNumber"
       :selection="selectedLine"
-      :metaKeySelection=false
+      :metaKeySelection="false"
     >
-      <Column field="lineNumber" header="#" style="width: 3rem;"></Column>
-      <Column field="start" header="Start" style="width: 5rem;"></Column>
-      <Column field="end" header="End" style="width: 5rem;"></Column>
-      <Column field="lengthMS" header="Length (ms)" style="width: 7rem;"></Column>
-      <Column field="cssClass" header="Class" style="width: 7rem;"></Column>
+      <Column field="lineNumber" header="#" style="width: 3rem"></Column>
+      <Column field="start" header="Start" style="width: 5rem"></Column>
+      <Column field="end" header="End" style="width: 5rem"></Column>
+      <Column field="lengthMS" header="Length (ms)" style="width: 7rem"></Column>
+      <Column field="cssClass" header="Class" style="width: 7rem"></Column>
       <Column field="line" header="Line"></Column>
     </Datatable>
   </div>
 </template>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

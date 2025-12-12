@@ -23,12 +23,12 @@ const app = createApp(App)
 app.use(pinia)
 app.use(i18n)
 app.use(PrimeVue, {
-    theme: {
-        preset: Lara,
-        options: {
-            darkModeSelector: '.app-container'
-        }
+  theme: {
+    preset: Lara,
+    options: {
+      darkModeSelector: '.app-container'
     }
+  }
 })
 
 app.mount('#app')

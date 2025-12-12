@@ -17,8 +17,8 @@ describe('EditorTab.vue', () => {
     const debugSpy = vi.spyOn(Util, 'debugLog')
     shallowMount(EditorTab, {
       global: {
-        stubs: ['edit-box', 'line-list'],
-      },
+        stubs: ['edit-box', 'line-list']
+      }
     })
     expect(debugSpy).toHaveBeenCalled()
   })
@@ -26,8 +26,8 @@ describe('EditorTab.vue', () => {
   it('renders edit-box and line-list elements', () => {
     const wrapper = shallowMount(EditorTab, {
       global: {
-        stubs: ['edit-box', 'line-list'],
-      },
+        stubs: ['edit-box', 'line-list']
+      }
     })
     expect(wrapper.find('edit-box').exists()).toBe(true)
     expect(wrapper.find('line-list').exists()).toBe(true)
@@ -38,9 +38,9 @@ describe('EditorTab.vue', () => {
       global: {
         stubs: {
           'edit-box': { template: '<div />' },
-          'line-list': { template: '<div />' },
-        },
-      },
+          'line-list': { template: '<div />' }
+        }
+      }
     })
     // refs live on vm.$refs
     expect((wrapper.vm as any).$refs.editorLineList).toBeDefined()

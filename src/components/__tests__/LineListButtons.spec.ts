@@ -6,7 +6,6 @@ import LineListButtons from '@/components/LineListButtons.vue'
 const debugLogMock = vi.fn()
 vi.mock('@/utils/Util', () => ({ Util: { debugLog: debugLogMock } }))
 
-
 const t = (key: string) => {
   const map: Record<string, string> = {
     'LineList.gotoline': 'Go to line',

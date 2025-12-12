@@ -20,10 +20,18 @@ const DatatableStub = defineComponent({
     return () =>
       h(
         'div',
-        { 'data-testid': 'datatable-stub', 'data-selection-mode': props.selectionMode, 'data-datakey': props.dataKey, 'data-scrollable': String(props.scrollable), 'data-scrollheight': props.scrollHeight },
+        {
+          'data-testid': 'datatable-stub',
+          'data-selection-mode': props.selectionMode,
+          'data-datakey': props.dataKey,
+          'data-scrollable': String(props.scrollable),
+          'data-scrollheight': props.scrollHeight
+        },
         [
           h('div', { 'data-testid': 'datatable-value-length' }, String((props.value || []).length)),
-          ...(props.value || []).map((item: any) => h('div', { 'data-line-number': String(item.lineNumber) }, item.line))
+          ...(props.value || []).map((item: any) =>
+            h('div', { 'data-line-number': String(item.lineNumber) }, item.line)
+          )
         ]
       )
   }

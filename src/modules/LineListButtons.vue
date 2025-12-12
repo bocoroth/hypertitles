@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Util } from '../Util'
+import { Util } from '../utils/Util'
 
 import { onMounted } from 'vue'
 

@@ -1,5 +1,5 @@
 import { test, expect, describe } from 'vitest'
-import { Util } from '../components/Util'
+import { Util } from '../utils/Util'
 
 describe('Running Util tests...', () => {
   test('Debug logging', () => {

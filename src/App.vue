@@ -6,7 +6,7 @@ import 'material-symbols//outlined.css'
 import SettingsTab from '@/components/views/SettingsTab.vue'
 import EditorTab from '@/components/views/EditorTab.vue'
 import PerformanceTab from '@/components/views/PerformanceTab.vue'
-import { Util } from './components/Util'
+import { Util } from './utils/Util'
 
 import { onBeforeMount, onMounted } from 'vue'
 

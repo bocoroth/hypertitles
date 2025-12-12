@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // The LineList module displays the datatable containing the current script.
 import { onMounted, ref } from 'vue'
-import { Util } from '../Util'
+import { Util } from '../utils/Util'
 import Datatable from 'primevue/datatable'
 import Column from 'primevue/column'
 

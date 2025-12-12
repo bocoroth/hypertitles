@@ -1,19 +1,46 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
-import { test, expect, describe } from 'vitest'
-import SettingsTab from '../components/views/SettingsTab.vue'
 
-describe('Running view/SettingsTab tests...', () => {
-  test('Component mounts properly', async () => {
+import SettingsTab from '@/views/SettingsTab.vue'
+import { Util } from '@/utils/Util'
+
+vi.mock('@/utils/Util')
+
+describe('SettingsTab.vue', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+  })
+
+  it('renders the component', () => {
     const wrapper = mount(SettingsTab, {
-      // global: {
-      //   mocks: {
-      //     // mock for vue-i18n
-      //     $t: (msg: any) => msg
-      //   }
-      // }
+      global: {
+        mocks: {
+          $t: (key: string) => key
+        }
+      }
     })
-    expect(wrapper).toBeTruthy()
+    expect(wrapper.exists()).toBe(true)
+  })
 
-    wrapper.unmount()
+  it('calls Util.debugLog on mount', () => {
+    mount(SettingsTab, {
+      global: {
+        mocks: {
+          $t: (key: string) => key
+        }
+      }
+    })
+    expect(Util.debugLog).toHaveBeenCalledWith('Settings view mounted.')
+  })
+
+  it('renders h1 with correct i18n translation', () => {
+    const wrapper = mount(SettingsTab, {
+      global: {
+        mocks: {
+          $t: (key: string) => `Settings`
+        }
+      }
+    })
+    expect(wrapper.find('h1').text()).toBe('Settings')
   })
 })

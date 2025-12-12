@@ -3,10 +3,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/js/dist/tab'
 import 'material-symbols//outlined.css'
 
-import SettingsTab from '@/components/views/SettingsTab.vue'
-import EditorTab from '@/components/views/EditorTab.vue'
-import PerformanceTab from '@/components/views/PerformanceTab.vue'
-import { Util } from './utils/Util'
+import SettingsTab from '@/views/SettingsTab.vue'
+import EditorTab from '@/views/EditorTab.vue'
+import PerformanceTab from '@/views/PerformanceTab.vue'
+import { Util } from '@/utils/Util'
 
 import { onBeforeMount, onMounted } from 'vue'
 
@@ -34,9 +34,8 @@ onMounted(() => {
         aria-controls="nav-settings"
         aria-selected="true"
       >
-        <!-- {{ $t('App.settings') }} -->
         <span class="material-symbols-outlined fs-6">settings</span>
-        Settings
+        {{ $t('App.settings') }}
       </button>
       <button
         class="nav-link"
@@ -48,9 +47,8 @@ onMounted(() => {
         aria-controls="nav-editor"
         aria-selected="false"
       >
-        <!-- {{ $t('App.editor') }} -->
         <span class="material-symbols-outlined fs-6">contract_edit</span>
-        Editor
+        {{ $t('App.editor') }}
       </button>
       <button
         class="nav-link"
@@ -62,9 +60,8 @@ onMounted(() => {
         aria-controls="nav-performance"
         aria-selected="false"
       >
-        <!-- {{ $t('App.performance') }} -->
         <span class="material-symbols-outlined fs-6">developer_mode_tv</span>
-        Performance
+        {{ $t('App.performance') }}
       </button>
     </div>
   </nav>

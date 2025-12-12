@@ -7,7 +7,7 @@
 import Editor from 'primevue/editor'
 import { onMounted, ref } from 'vue'
 
-import { Util } from '../utils/Util'
+import { Util } from '@/utils/Util'
 
 const lineItem = ref<string>('')  
 

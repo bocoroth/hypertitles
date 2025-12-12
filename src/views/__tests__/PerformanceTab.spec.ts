@@ -1,19 +1,38 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
-import { test, expect, describe } from 'vitest'
-import PerformanceTab from '../components/views/PerformanceTab.vue'
 
-describe('Running view/PerformanceTab tests...', () => {
-  test('Component mounts properly', async () => {
-    const wrapper = mount(PerformanceTab, {
-      // global: {
-      //   mocks: {
-      //     // mock for vue-i18n
-      //     $t: (msg: any) => msg
-      //   }
-      // }
-    })
-    expect(wrapper).toBeTruthy()
+import PerformanceTab from '@/views/PerformanceTab.vue'
+import LineList from '@/components/LineList.vue'
+import { Util } from '@/utils/Util'
 
-    wrapper.unmount()
+vi.mock('@/utils/Util', () => ({
+  Util: {
+    debugLog: vi.fn(),
+  },
+}))
+
+describe('PerformanceTab.vue', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+  })
+
+  it('renders the component', () => {
+    const wrapper = mount(PerformanceTab)
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('renders LineList component', () => {
+    const wrapper = mount(PerformanceTab)
+    expect(wrapper.findComponent(LineList).exists()).toBe(true)
+  })
+
+  it('calls debugLog on mount', () => {
+    mount(PerformanceTab)
+    expect(Util.debugLog).toHaveBeenCalledWith('Performance view mounted.')
+  })
+
+  it('has performanceLineList ref', () => {
+    const wrapper = mount(PerformanceTab)
+    expect(wrapper.vm.$refs.performanceLineList).toBeDefined()
   })
 })

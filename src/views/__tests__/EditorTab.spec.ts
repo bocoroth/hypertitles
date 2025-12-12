@@ -1,36 +1,48 @@
-import { mount } from '@vue/test-utils'
-import { test, expect, describe } from 'vitest'
-import EditorTab from '../components/views/EditorTab.vue'
-import EditBox from '../components/modules/EditBox.vue'
-import LineList from '../components/modules/LineList.vue'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { shallowMount, mount } from '@vue/test-utils'
 
-describe('Running view/EditorTab tests...', () => {
-  test('Component mounts properly', async () => {
-    const wrapper = mount(EditorTab, {
-      // global: {
-      //   mocks: {
-      //     // mock for vue-i18n
-      //     $t: (msg: any) => msg
-      //   }
-      // }
-    })
-    expect(wrapper).toBeTruthy()
+import EditorTab from '@/views/EditorTab.vue'
+import { Util } from '@/utils/Util'
 
-    wrapper.unmount()
+describe('EditorTab.vue', () => {
+  beforeEach(() => {
+    vi.restoreAllMocks()
   })
 
-  test('Component loads contents', async () => {
-    const wrapper = mount(EditorTab, {
-      // global: {
-      //   mocks: {
-      //     // mock for vue-i18n
-      //     $t: (msg: any) => msg
-      //   }
-      // }
-    })
-    expect(wrapper.getComponent(EditBox))
-    expect(wrapper.getComponent(LineList))
+  afterEach(() => {
+    vi.clearAllMocks()
+  })
 
-    wrapper.unmount()
+  it('calls Util.debugLog on mount', () => {
+    const debugSpy = vi.spyOn(Util, 'debugLog')
+    shallowMount(EditorTab, {
+      global: {
+        stubs: ['edit-box', 'line-list'],
+      },
+    })
+    expect(debugSpy).toHaveBeenCalled()
+  })
+
+  it('renders edit-box and line-list elements', () => {
+    const wrapper = shallowMount(EditorTab, {
+      global: {
+        stubs: ['edit-box', 'line-list'],
+      },
+    })
+    expect(wrapper.find('edit-box').exists()).toBe(true)
+    expect(wrapper.find('line-list').exists()).toBe(true)
+  })
+
+  it('exposes editorLineList ref', () => {
+    const wrapper = mount(EditorTab, {
+      global: {
+        stubs: {
+          'edit-box': { template: '<div />' },
+          'line-list': { template: '<div />' },
+        },
+      },
+    })
+    // refs live on vm.$refs
+    expect((wrapper.vm as any).$refs.editorLineList).toBeDefined()
   })
 })

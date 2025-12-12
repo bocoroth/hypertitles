@@ -2,7 +2,7 @@
 // The Settings tab controls user settings.
 import { onMounted } from 'vue'
 
-import { Util } from '../utils/Util'
+import { Util } from '@/utils/Util'
 
 onMounted(() => {
   Util.debugLog('LinePreview module mounted.')

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 // The Performance tab will run through the script, optionally using one or more external displays.
 
-import { Util } from '../Util'
-import LineList from '@/components/modules/LineList.vue'
+import { Util } from '@/utils/Util'
+import LineList from '@/components/LineList.vue'
 
 import { onMounted } from 'vue'
 

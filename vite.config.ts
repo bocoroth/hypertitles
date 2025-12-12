@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import path from 'path'
-import { fileURLToPath } from 'url'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -13,11 +12,9 @@ export default defineConfig({
     }),
   ],
   resolve: {
-    alias:
-      {
-        'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
-        '@': fileURLToPath(new URL('./src', import.meta.url))
-      }
+    alias: {
+      '@': path.resolve(__dirname, 'src')
+    }
   },
 
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`

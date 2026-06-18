@@ -3,8 +3,7 @@ import { mount } from '@vue/test-utils'
 
 import LineListButtons from '@/components/LineListButtons.vue'
 
-const debugLogMock = vi.fn()
-vi.mock('@/utils/Util', () => ({ Util: { debugLog: debugLogMock } }))
+vi.mock('@/utils/Util', () => ({ Util: { debugLog: vi.fn() } }))
 
 const t = (key: string) => {
   const map: Record<string, string> = {
@@ -21,7 +20,7 @@ afterEach(() => {
 })
 
 describe('LineListButtons.vue', () => {
-  it('renders expected elements, translations and calls Util.debugLog on mount', () => {
+  it('renders expected elements, translations and calls Util.debugLog on mount', async () => {
     const wrapper = mount(LineListButtons, {
       global: {
         mocks: { $t: t }
@@ -46,8 +45,9 @@ describe('LineListButtons.vue', () => {
     expect(cueBtn.text()).toBe('Cue')
     expect(goBtn.text()).toBe('Go')
 
-    expect(debugLogMock).toHaveBeenCalledTimes(1)
-    expect(debugLogMock).toHaveBeenCalledWith('LineListButtons module mounted.')
+    const { Util } = await import('@/utils/Util')
+    expect(Util.debugLog).toHaveBeenCalledTimes(1)
+    expect(Util.debugLog).toHaveBeenCalledWith('LineListButtons module mounted.')
   })
 
   it('applies d-none class to cue and go buttons when isEditorMode is true and not when false', async () => {

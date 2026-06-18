@@ -6,6 +6,7 @@ import 'material-symbols//outlined.css'
 import SettingsTab from '@/views/SettingsTab.vue'
 import EditorTab from '@/views/EditorTab.vue'
 import PerformanceTab from '@/views/PerformanceTab.vue'
+import StatusBar from '@/components/StatusBar.vue'
 import { Util } from '@/utils/Util'
 
 import { onBeforeMount, onMounted } from 'vue'
@@ -76,11 +77,16 @@ onMounted(() => {
         <performance-tab ref="performanceTab"></performance-tab>
       </div>
     </div>
+    <status-bar></status-bar>
   </div>
 </template>
 
 <style lang="scss">
 .app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
   // CSS variable overrides
   --bs-body-bg: #222;
   --bs-body-color: #eee;
@@ -90,6 +96,11 @@ onMounted(() => {
   --p-datatable-row-hover-background: #333;
   --p-datatable-row-color: #aaa;
   --p-datatable-row-hover-color: #aac;
+
+  .tab-content {
+    flex: 1;
+    overflow: auto;
+  }
 }
 
 // Material Symbols

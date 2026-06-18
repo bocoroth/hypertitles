@@ -15,7 +15,7 @@
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "tauri": "tauri dev",
-    "test": "vitest run --silent --reporter dot",
+    "test": "NODE_OPTIONS=--localstorage-file=./.localstorage vitest run --silent --reporter dot",
     "test-verbose": "vitest run --silent --reporter verbose",
     "coverage": "vitest run --silent --coverage"
   },
@@ -26,8 +26,9 @@
     "@tauri-apps/plugin-fs": "^2.2.0",
     "@tinymce/tinymce-vue": "^6.1.0",
     "bootstrap": "^5.3.3",
-    "material-symbols": "^0.40.2",
+    "material-symbols": "^0.45.1",
     "pinia": "^3.0.1",
+    "pinia-plugin-persistedstate": "^4.7.1",
     "primevue": "^4.4.1",
     "quill": "^2.0.3",
     "vue": "^3.3.4",
@@ -43,16 +44,23 @@
     "@vitejs/plugin-vue": "^6.0.1",
     "@vitest/coverage-v8": "^4.0.4",
     "@vue/test-utils": "^2.4.6",
-    "cypress": "^15.5.0",
-    "eslint": "^9.23.0",
+    "cypress": "^15.8.1",
+    "esbuild": "^0.28.1",
+    "eslint": "^10.5.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-vue": "^10.0.0",
-    "jsdom": "^27.0.1",
+    "happy-dom": "^20.0.11",
+    "jsdom": "^29.1.1",
     "prettier": "^3.7.4",
     "sass": "^1.86.0",
-    "typescript": "^5.8.2",
-    "vite": "^7.1.12",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16",
     "vitest": "^4.0.4",
     "vue-tsc": "^3.1.2"
+  },
+  "allowScripts": {
+    "cypress@15.17.0": true,
+    "@parcel/watcher": false,
+    "esbuild": false
   }
 }

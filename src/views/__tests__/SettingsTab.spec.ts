@@ -37,7 +37,7 @@ describe('SettingsTab.vue', () => {
     const wrapper = mount(SettingsTab, {
       global: {
         mocks: {
-          $t: (key: string) => `Settings`
+          $t: (_key: string) => `Settings`
         }
       }
     })

@@ -12,13 +12,21 @@ vi.mock('@/App.vue', () => ({ default: {} }))
 describe('main.ts', () => {
   let mockApp: any
 
-  beforeEach(() => {
+  beforeEach(async () => {
     vi.clearAllMocks()
+    vi.resetModules()
     mockApp = {
       use: vi.fn().mockReturnThis(),
       mount: vi.fn()
     }
+    const mockPinia = { 
+      use: vi.fn(),
+      install: vi.fn(),
+      state: {}
+    }
     vi.mocked(createApp).mockReturnValue(mockApp)
+    vi.mocked(createPinia).mockReturnValue(mockPinia as any)
+    await import('@/main')
   })
 
   it('should create a Vue app instance', () => {

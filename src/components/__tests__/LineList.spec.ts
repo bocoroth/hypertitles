@@ -2,23 +2,22 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { defineComponent, h } from 'vue'
 
-import LineList from '@/components/LineList.vue'
+vi.mock('@/utils/Util', () => ({ Util: { debugLog: vi.fn() } }))
 
-const debugSpy = vi.fn()
-vi.mock('@/utils/Util', () => ({ Util: { debugLog: debugSpy } }))
-
-const DatatableStub = defineComponent({
-  name: 'Datatable',
-  props: {
-    value: { type: Array, default: () => [] },
-    selectionMode: { type: String, default: '' },
-    dataKey: { type: String, default: '' },
-    scrollable: { type: Boolean, default: false },
-    scrollHeight: { type: String, default: '' }
-  },
-  setup(props) {
-    return () =>
-      h(
+vi.mock('primevue/datatable', () => {
+  return {
+    default: defineComponent({
+      name: 'Datatable',
+      props: {
+        value: { type: Array, default: () => [] },
+        selectionMode: { type: String, default: '' },
+        dataKey: { type: String, default: '' },
+        scrollable: { type: Boolean, default: false },
+        scrollHeight: { type: String, default: '' }
+      },
+      setup(props: { value?: Array<{ lineNumber: number; line: string }>; selectionMode: string; dataKey: string; scrollable: boolean; scrollHeight: string }) {
+        return () =>
+          h(
         'div',
         {
           'data-testid': 'datatable-stub',
@@ -29,46 +28,54 @@ const DatatableStub = defineComponent({
         },
         [
           h('div', { 'data-testid': 'datatable-value-length' }, String((props.value || []).length)),
-          ...(props.value || []).map((item: any) =>
+          ...(props.value || []).map((item: { lineNumber: number; line: string }) =>
             h('div', { 'data-line-number': String(item.lineNumber) }, item.line)
           )
         ]
-      )
+          )
+      }
+    })
   }
 })
 
-const ColumnStub = defineComponent({ name: 'Column', props: ['field', 'header', 'style'], setup: () => () => null })
+vi.mock('primevue/column', () => {
+  return { default: defineComponent({ name: 'Column', props: ['field', 'header', 'style'], setup: () => () => null }) }
+})
 
 describe('LineList.vue', () => {
   beforeEach(() => {
-    debugSpy.mockClear()
+    vi.clearAllMocks()
   })
 
-  it('calls Util.debugLog on mount', () => {
-    mount(LineList, { global: { components: { Datatable: DatatableStub, Column: ColumnStub } } })
-    expect(debugSpy).toHaveBeenCalled()
+  it('calls Util.debugLog on mount', async () => {
+    const { Util } = await import('@/utils/Util')
+    const { default: LineList } = await import('@/components/LineList.vue')
+    mount(LineList)
+    expect(Util.debugLog).toHaveBeenCalled()
   })
 
-  it('renders datatable stub with correct number of rows', () => {
-    const wrapper = mount(LineList, { global: { components: { Datatable: DatatableStub, Column: ColumnStub } } })
+  it('renders datatable stub with correct number of rows', async () => {
+    const { default: LineList } = await import('@/components/LineList.vue')
+    const wrapper = mount(LineList)
     const countEl = wrapper.find('[data-testid="datatable-value-length"]')
     expect(countEl.exists()).toBe(true)
     expect(countEl.text()).toBe('2')
-    const rows = wrapper.findAll('[data-line-number]')
-    expect(rows.length).toBe(2)
   })
 
-  it('passes selectionMode, dataKey and scroll props to datatable', () => {
-    const wrapper = mount(LineList, { global: { components: { Datatable: DatatableStub, Column: ColumnStub } } })
+  it('passes selectionMode, dataKey and scroll props to datatable', async () => {
+    const { default: LineList } = await import('@/components/LineList.vue')
+    const wrapper = mount(LineList)
     const dt = wrapper.find('[data-testid="datatable-stub"]')
+    expect(dt.exists()).toBe(true)
     expect(dt.attributes('data-selection-mode')).toBe('single')
     expect(dt.attributes('data-datakey')).toBe('lineNumber')
     expect(dt.attributes('data-scrollable')).toBe('true')
     expect(dt.attributes('data-scrollheight')).toBe('400px')
   })
 
-  it('renders the expected line text for each row', () => {
-    const wrapper = mount(LineList, { global: { components: { Datatable: DatatableStub, Column: ColumnStub } } })
+  it('renders the expected line text for each row', async () => {
+    const { default: LineList } = await import('@/components/LineList.vue')
+    const wrapper = mount(LineList)
     const rows = wrapper.findAll('[data-line-number]')
     expect(rows[0].text()).toContain('Lorem ipsum')
     expect(rows[1].text()).toContain('Ut enim ad minim veniam')

@@ -24,13 +24,13 @@ describe('EditorTab.vue', () => {
   })
 
   it('renders edit-box and line-list elements', () => {
-    const wrapper = shallowMount(EditorTab, {
+    const wrapper = mount(EditorTab, {
       global: {
         stubs: ['edit-box', 'line-list']
       }
     })
-    expect(wrapper.find('edit-box').exists()).toBe(true)
-    expect(wrapper.find('line-list').exists()).toBe(true)
+    expect(wrapper.find('edit-box-stub').exists()).toBe(true)
+    expect(wrapper.find('line-list-stub').exists()).toBe(true)
   })
 
   it('exposes editorLineList ref', () => {

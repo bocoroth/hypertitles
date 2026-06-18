@@ -5,6 +5,14 @@ export interface ScriptLine {
   id: number
   startTime: string
   text: string
+  sequenceAfter?: number | null
+}
+
+export interface Sequence {
+  id: number
+  name: string
+  loop: number | 'inf'
+  text: ScriptLine[]
 }
 
 export interface ScriptMetadata {
@@ -20,14 +28,15 @@ export interface ScriptMetadata {
 
 export interface LineList {
   meta: ScriptMetadata
-  text: ScriptLine[]
+  text: ScriptLine[],
+  sequences?: Sequence[]
 }
 
 export interface LineListState {
-  currentLine: string
-  currentLineNum: number
-  data: LineList
+  currentLine: ScriptLine | null
+  nextLine: ScriptLine | null
+  currentSequence: number | null
+  lineAfterSequence: number | null
   isEditorMode: boolean
-  lineData: ScriptLine[]
-  metaData: ScriptMetadata
+  lineList: LineList
 }

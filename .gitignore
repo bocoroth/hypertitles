@@ -7,12 +7,15 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependency directories and build output
 node_modules
 dist
 dist-ssr
 coverage
 *.local
 /target/
+.localstorage
+.localstorage-*
 
 # Editor directories and files
 .vscode/*

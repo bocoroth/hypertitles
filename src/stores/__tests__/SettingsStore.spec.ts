@@ -27,9 +27,14 @@ describe('SettingsStore', () => {
   })
 
   it('should have independent store instances', () => {
+    const pinia1 = createPinia()
+    setActivePinia(pinia1)
     const store1 = SettingsStore()
-    const store2 = SettingsStore()
     store1.lang = 'es'
+
+    const pinia2 = createPinia()
+    setActivePinia(pinia2)
+    const store2 = SettingsStore()
     expect(store2.lang).toBe('en')
   })
 })

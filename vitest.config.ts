@@ -10,20 +10,23 @@ export default defineConfig(
   mergeConfig(viteConfig, {
     // extending app vite config
     test: {
-      environment: 'jsdom',
+      environment: 'happy-dom',
+      setupFiles: ['./vitest.setup.ts'],
       coverage: {
         provider: 'v8',
         reporter: ['text', 'json', 'html', 'lcov'],
         exclude: ['**/node_modules/**', '**/dist/**', '**/**.d.ts', '**/src/main.ts']
       }
     },
+
     plugins: [
       // Vue()
     ],
     resolve: {
       alias: {
         // 'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
-        '@': fileURLToPath(new URL('./src', import.meta.url))
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
+        '@vue/devtools-kit': fileURLToPath(new URL('./src/__stubs__/vue-devtools-kit.ts', import.meta.url))
       }
     }
   })

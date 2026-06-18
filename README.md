@@ -29,5 +29,5 @@ OR
 
 4. `npm run build` to build the vite bundle for tauri
 5. `cd src-tauri` to enter the rust src dir
-6. `cargo install` to install rust packages
+6. `cargo install --path .` to install rust packages
 7. `npm run tauri` to launch the tauri app
